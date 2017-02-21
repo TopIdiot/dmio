@@ -1,4 +1,5 @@
 module dmio_type
+      include 'mpif.h'
       implicit none
       save
       !define process type
@@ -12,6 +13,8 @@ module dmio_type
       integer          :: proc_num 
       integer          :: client_num
       integer          :: server_num
+      MPI_Group :: group , only_server_group , server_and_master_group
+      MPI_Comm :: only_server_comm,server_and_master_comm
 
       contains
           subroutine get_proc_type(rank,proc_type)
