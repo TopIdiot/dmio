@@ -12,5 +12,21 @@ module dmio_type
       integer          :: proc_num 
       integer          :: client_num
       integer          :: server_num
- 
+
+      contains
+          subroutine get_proc_type(rank,proc_type)
+              implicit none
+              integer,intent(in) :: rank 
+              integer,intent(out):: proc_type
+
+              if(rank == 0) then 
+                   proc_type = proc_master
+              else if (rank <= client_num) then
+                  proc_type = proc_client
+              else
+                  proc_type =  proc_server
+              end if
+          end subroutine get_proc_type
+
+
 end module dmio_type 
