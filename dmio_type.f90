@@ -13,4 +13,4 @@ module dmio_type
       integer          :: client_num
       integer          :: server_num
  
-end module 
+end module dmio_type 
