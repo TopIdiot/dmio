@@ -17,25 +17,29 @@
  */
 #ifndef _DMIO_TYPE_H
 #define _DMIO_TYPE_H
-
 #include "mpi.h"
 
 #define proc_master 0
 #define proc_client 1
 #define proc_server 2
 
-extern int proc_num
-extern int client_num
-extern int server_num
+int proc_num;
+int client_num;
+int server_num;
 
-extern MPI_Group  group
-extern MPI_Group only_server_group
+MPI_Group  group;
+MPI_Group only_server_group;
+MPI_Win nwin;
 
-int get_proc_type(int &rank)
+int get_proc_type(int rank);
+
+ 
+typedef struct
 {
-    if(rank==0) return proc_master;
-    else if(rank <= client_num) return proc_client
-    else return proc_server
-}
+    int rank;
+    int nx;
+    int ny;
+    MPI_Win nwin;
+}msg
 
 #endif
