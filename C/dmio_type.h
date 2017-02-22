@@ -38,4 +38,4 @@ int get_proc_type(int &rank)
     else return proc_server
 }
 
-
+#endif
