@@ -19,13 +19,14 @@ subroutine dmio_init(proc_type )
       do i=client_num,sz
         ranks[i] = i
       end do
-      rank[sz+1] = 0
+      ranks[sz+1] = 0
 
       call MPI_Comm_group(MPI_Comm_world , group , ierr)
       call MPI_Group_incl(group , sz-client_num+1 , only_server_group , ierr)
       call MPI_Comm_create(MPI_Comm_world , only_server_group , only_server_comm , ierr)
       call MPI_Group_incl(group , sz-client_num+2 , server_and_master_group , ierr)
       call MPI_Comm_create(MPI_Comm_world , server_and_master_group , server_and_master_comm) 
+      deallocate(ranks)
 
 end subroutine
 
