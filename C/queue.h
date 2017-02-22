@@ -11,27 +11,36 @@
  *       Compiler:  gcc
  *
  *         Author:  YOUR NAME (), 
- *   Organization:  
+ *   Organization:
  *
  * =====================================================================================
  */
 #ifndef _QUEUE_H
 #define _QUEUE_H
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "dmio_type.h"
+#include <stdint.h>
+#include "mpi.h"
 
+typedef struct{
+    int rank;
+    int nx;
+    int ny;
+    MPI_Win nwin;
+}msg;
 typedef struct Node{
     msg data;
     struct Node *next;
 } Node, *Queue;
-
 typedef struct{
     Queue front;
     Queue rear;
 } LinkQueue;
-void initQueue(LinkQueue *queue)
+
+
+void initQueue(LinkQueue *queue);
 
 bool isEmpty(LinkQueue *queue);
 

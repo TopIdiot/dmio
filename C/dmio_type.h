@@ -33,13 +33,4 @@ MPI_Win nwin;
 
 int get_proc_type(int rank);
 
- 
-typedef struct
-{
-    int rank;
-    int nx;
-    int ny;
-    MPI_Win nwin;
-}msg
-
 #endif
