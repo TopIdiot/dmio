@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "queue.h"
 #include "mpi.h"
-void initQueue(LinkQueue *queue)
+void init_queue(LinkQueue *queue)
 {
     queue->front = queue->rear = (Queue)malloc(sizeof(Node));
     if (NULL == queue->front) {
@@ -13,7 +13,7 @@ void initQueue(LinkQueue *queue)
 
     queue->front->next = NULL;
 }
-bool is_empty(LinkQueue queue)
+bool is_empty_queue(LinkQueue queue)
 {
     return queue.rear == queue.front ? true : false;
 }
@@ -33,7 +33,7 @@ void pop_queue(LinkQueue *queue)
 {
     Queue q = NULL;
 
-    if (!is_empty(*queue)) {
+    if (!is_empty_queue(*queue)) {
         q = queue->front->next;
         queue->front->next = q->next;
         //这句很关键，不能丢
@@ -45,13 +45,18 @@ void pop_queue(LinkQueue *queue)
     }
 }
 
-Node* front_queue(LinkQueue *queue)
+msg front_queue(LinkQueue *queue)
 {
-    Node* q = NULL;
+    msg q ;
 
-    if(!is_empty(*queue))
+    if(!is_empty_queue(*queue))
     {
-        q = queue->front->next;
+        Node *t;
+        t = queue->front->next;
+        q.rank = t->data.rank;
+        q.nx = t->data.nx;
+        q.ny = t->data.ny;
+        q.nwin = t->data.nwin;
     }
     return q;
 }

@@ -1,0 +1,52 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+LinkQueue	queue.h	/^} LinkQueue;$/;"	t	typeref:struct:__anon2
+Node	queue.h	/^typedef struct Node{$/;"	s
+Node	queue.h	/^} Node, *Queue;$/;"	t	typeref:struct:Node
+Queue	queue.h	/^} Node, *Queue;$/;"	t	typeref:struct:Node
+_DMIO_H	dmio.h	2;"	d
+_DMIO_TYPE_H	dmio_type.h	19;"	d
+_QUEUE_H	queue.h	19;"	d
+client_num	dmio_type.h	/^int client_num;$/;"	v
+close_file	dmio.c	/^void close_file(int *ncid)$/;"	f
+create_msg_type	dmio.c	/^void create_msg_type()$/;"	f
+data	queue.h	/^    msg data;$/;"	m	struct:Node
+destory_queue	queue.c	/^void destory_queue(LinkQueue *queue)$/;"	f
+dmio_init	dmio.c	/^void dmio_init()$/;"	f
+dmio_save	dmio.c	/^void dmio_save(char *filename, char *varname , double ** A, int nx, int ny)$/;"	f
+front	queue.h	/^    Queue front;$/;"	m	struct:__anon2
+front_queue	queue.c	/^Node front_queue(LinkQueue *queue)$/;"	f
+get_proc_type	dmio_type.c	/^int get_proc_type(int rank)$/;"	f
+group	dmio_type.h	/^MPI_Group  group;$/;"	v
+init_queue	queue.c	/^void init_queue(LinkQueue *queue)$/;"	f
+io_end	dmio.c	/^void io_end()$/;"	f
+io_status	dmio.c	/^int io_status = 1;$/;"	v
+is_empty_queue	queue.c	/^bool is_empty_queue(LinkQueue queue)$/;"	f
+main	dmio.c	/^int main(int argc ,char **argv)$/;"	f
+master_status	dmio.c	/^int master_status = 0;$/;"	v
+msg	queue.h	/^}msg;$/;"	t	typeref:struct:__anon1
+next	queue.h	/^    struct Node *next;$/;"	m	struct:Node	typeref:struct:Node::Node
+nwin	dmio_type.h	/^MPI_Win nwin;$/;"	v
+nwin	queue.h	/^    MPI_Win nwin;$/;"	m	struct:__anon1
+nx	queue.h	/^    int nx;$/;"	m	struct:__anon1
+ny	queue.h	/^    int ny;$/;"	m	struct:__anon1
+only_server_comm	dmio_type.h	/^MPI_Comm only_server_comm;$/;"	v
+only_server_group	dmio_type.h	/^MPI_Group only_server_group;$/;"	v
+pop_queue	queue.c	/^void pop_queue(LinkQueue *queue)$/;"	f
+proc_client	dmio_type.h	23;"	d
+proc_master	dmio_type.h	22;"	d
+proc_num	dmio_type.h	/^int proc_num;$/;"	v
+proc_server	dmio_type.h	24;"	d
+proc_type	dmio_type.h	/^int proc_type;$/;"	v
+push_queue	queue.c	/^void push_queue(LinkQueue *queue, msg temp)$/;"	f
+queue_status	dmio.c	/^int queue_status = 0;$/;"	v
+rank	queue.h	/^    int rank;$/;"	m	struct:__anon1
+rear	queue.h	/^    Queue rear;$/;"	m	struct:__anon2
+server_and_master_comm	dmio_type.h	/^MPI_Comm server_and_master_comm;$/;"	v
+server_and_master_group	dmio_type.h	/^MPI_Group server_and_master_group;$/;"	v
+server_num	dmio_type.h	/^int server_num;$/;"	v
+server_status	dmio.c	/^int server_status = 0;$/;"	v

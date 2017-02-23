@@ -106,7 +106,7 @@ void dmio_save(char *filename, char *varname , double ** A, int nx, int ny)
     {
         int rank;
         MPI_Win nwin;
-        MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+        MPI_Comm_rank(MPI_COMM_WORLD,&  rank)
         MPI_Win_create(&A,sizeof(double),nx*ny,MPI_INFO_NULL,MPI_COMM_WORLD,&nwin);
         msg ms = {rank,nx,ny,nwin};
         MPI_Send(&ms,1,message,0,0,MPI_COMM_WORLD);

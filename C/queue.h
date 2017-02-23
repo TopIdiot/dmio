@@ -40,15 +40,15 @@ typedef struct{
 } LinkQueue;
 
 
-void initQueue(LinkQueue *queue);
+void init_queue(LinkQueue *queue);
 
-bool isEmpty(LinkQueue *queue);
+bool is_empty_queue(LinkQueue queue);
 
 void push_queue(LinkQueue *queue, msg temp);
 
 void pop_queue(LinkQueue *queue);
 
-Node* front_queue(LinkQueue *queue);
+msg front_queue(LinkQueue *queue);
 
 void destoey_queue(LinkQueue *queue);
 
