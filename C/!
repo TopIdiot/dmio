@@ -2,17 +2,26 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "mpi.h"
-//#include "dmio.h"
+#include "dmio.h"
 #include <stdlib.h>
 #include "dmio_type.h"
 #include "queue.h"
 //queue_status 0 empty 1 not empty
 //io_status 0 io end  1 io not end 
-int queue_status = 0;
-int io_status = 1;
-int master_status = 0;
-int server_status = 0;
 
+
+void init_status()
+{
+    queue_status = is_free;
+    io_status = is_busy;
+    master_status = is_free;
+    server_status = is_free;
+}
+
+void reset_status()
+{
+    init_status();
+}
 void create_msg_type()
 {
     int blocklength[] = {1,1,1,1};
@@ -72,7 +81,7 @@ void dmio_save(char *filename, char *varname , double ** A, int nx, int ny)
                 MPI_Status status;
                 MPI_Recv(&ms,1,message,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
                 int rk = ms.rank;
-                if(get_prco_type(rk) == proc_client)
+                if(get_proc_type(rk) == proc_client)
                 {
                     push_queue(&queue,ms);
                 }
@@ -92,7 +101,7 @@ void dmio_save(char *filename, char *varname , double ** A, int nx, int ny)
                     MPI_Send(&new_ms,1,message,ms.rank,0,MPI_COMM_WORLD);
                 }
                 bool is_empty = is_empty_queue(queue);
-                if(is_empty && !io_status) break;
+                if(is_empty && io_status == is_free) break;
 
 
             }
@@ -106,7 +115,7 @@ void dmio_save(char *filename, char *varname , double ** A, int nx, int ny)
     {
         int rank;
         MPI_Win nwin;
-        MPI_Comm_rank(MPI_COMM_WORLD,&  rank)
+        MPI_Comm_rank(MPI_COMM_WORLD,&rank);
         MPI_Win_create(&A,sizeof(double),nx*ny,MPI_INFO_NULL,MPI_COMM_WORLD,&nwin);
         msg ms = {rank,nx,ny,nwin};
         MPI_Send(&ms,1,message,0,0,MPI_COMM_WORLD);
@@ -145,8 +154,10 @@ void dmio_save(char *filename, char *varname , double ** A, int nx, int ny)
     }
 }
 
-void close_file(int *ncid)
-{}
+void close_file(int ncid)
+{
+//    ncmpi_close(ncid);
+}
 
 void io_end()
 {

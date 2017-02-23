@@ -26,9 +26,10 @@
 
 typedef struct{
     int rank;
+    int ncid;
+    MPI_Win nwin;
     int nx;
     int ny;
-    MPI_Win nwin;
 }msg;
 typedef struct Node{
     msg data;
