@@ -16,6 +16,6 @@ int now_request;
 void set_status();
 void dmio_init();
 void close_file(int ncid);
-void dmio_save(char *filename,char *varname,double **A, int nx, int ny);
+void dmio_save(char *filename,char *varname,double **A, int nx, int ny,int *ncid, int *varid);
 void dmio_finalize();
 #endif

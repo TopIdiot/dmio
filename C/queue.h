@@ -27,14 +27,17 @@
 typedef struct{
     int rank;
     int ncid;
+    int varid;
     MPI_Win nwin;
     int nx;
     int ny;
 }msg;
+
 typedef struct Node{
     msg data;
     struct Node *next;
 } Node, *Queue;
+
 typedef struct{
     Queue front;
     Queue rear;
@@ -51,6 +54,6 @@ void pop_queue(LinkQueue *queue);
 
 msg front_queue(LinkQueue *queue);
 
-void destoey_queue(LinkQueue *queue);
+void destory_queue(LinkQueue *queue);
 
 #endif

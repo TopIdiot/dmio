@@ -26,15 +26,16 @@
 int proc_num;
 int client_num;
 int server_num;
+int master_num;
 int proc_type;
 MPI_Group  group;
 MPI_Group only_server_group;
 MPI_Group server_and_master_group;
-MPI_Group server0_and_client_group;
+MPI_Group server_and_client_group;
 
 MPI_Comm only_server_comm;
 MPI_Comm server_and_master_comm;
-MPI_Comm server0_and_client_comm;
+MPI_Comm server_and_client_comm;
 
 MPI_Win nwin;
 
