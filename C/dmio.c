@@ -21,7 +21,6 @@ void set_status()
     server_status = is_free;
     tot_request = 0;
     now_request = 0;
-    memset(tags,0,sizeof(tags));
     origin_tag = 0;
 }
 
@@ -185,7 +184,8 @@ void server_work(){
     if( proc_type != proc_server ) return ;
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-
+    int *tags = (int *)malloc(sizeod(int)*proc_num);
+    for(i=0; i<proc_num; i++) tags[i] = 0;
     while(true)
     {
         int ierr, i, tx, ty;

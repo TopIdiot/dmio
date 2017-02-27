@@ -29,7 +29,6 @@ int server_num;
 int master_num;
 int proc_type;
 
-int tags[100000];
 int origin_tag;
 
 MPI_Group  group;
