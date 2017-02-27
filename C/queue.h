@@ -43,7 +43,8 @@ typedef struct{
     Queue rear;
 } LinkQueue;
 
-
+LinkQueue queue;
+LinkQueue msg_buffer;
 void init_queue(LinkQueue *queue);
 
 bool is_empty_queue(LinkQueue queue);

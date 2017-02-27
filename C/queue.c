@@ -36,7 +36,6 @@ void pop_queue(LinkQueue *queue)
     if (!is_empty_queue(*queue)) {
         q = queue->front->next;
         queue->front->next = q->next;
-        //这句很关键，不能丢
         if (queue->rear == q) {
             queue->rear = queue->front;
         }
@@ -54,6 +53,8 @@ msg front_queue(LinkQueue *queue)
         Node *t;
         t = queue->front->next;
         q.rank = t->data.rank;
+        q.ncid = t->data.ncid;
+        q.varid = t->data.varid;
         q.nx = t->data.nx;
         q.ny = t->data.ny;
         q.nwin = t->data.nwin;
