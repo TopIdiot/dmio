@@ -64,7 +64,7 @@ void dmio_init()
     MPI_Group_incl(group, server_num+1, ranks2, &server_and_master_group);
     MPI_Comm_create(MPI_COMM_WORLD, server_and_master_group, &server_and_master_comm); 
 
-    MPI_Group_incl(group, client_num+1, ranks3, &server_and_client_group); 
+    MPI_Group_incl(group, client_num+server_num, ranks3, &server_and_client_group); 
     MPI_Comm_create(MPI_COMM_WORLD,server_and_client_group,&server_and_client_comm);
 
     free(ranks1);
@@ -84,9 +84,7 @@ void dmio_save(char* filename, char* varname, double *A, int nx, int ny, int *nc
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
    
-    if((proc_type == proc_server) || (proc_type == proc_client)){
-        ierr = MPI_Win_create(A,sizeof(double)*nx*ny,sizeof(double),MPI_INFO_NULL,server_and_client_comm,nwin);
-    }
+    ierr = MPI_Win_create(A,sizeof(double)*nx*ny,sizeof(double),MPI_INFO_NULL,MPI_COMM_WORLD,nwin);
 
     if(proc_type == proc_server){
         int cmode,dimid[2];
@@ -214,9 +212,9 @@ void server_work(){
         count[0] = tx;
         count[1] = ty;
 
-        ierr =  MPI_Win_lock(MPI_LOCK_SHARED, rk-master_num, 0, ms.nwin);
-        ierr = MPI_Get(tmp, tx*ty, MPI_DOUBLE, rk-master_num, 0, tx*ty, MPI_DOUBLE, ms.nwin);
-        ierr = MPI_Win_unlock(rk-master_num, ms.nwin);
+        ierr =  MPI_Win_lock(MPI_LOCK_SHARED, rk, 0, ms.nwin);
+        ierr = MPI_Get(tmp, tx*ty, MPI_DOUBLE, rk, 0, tx*ty, MPI_DOUBLE, ms.nwin);
+        ierr = MPI_Win_unlock(rk, ms.nwin);
 
         ierr = ncmpi_put_vara_double(ncid, varid, start, count, tmp);
         NC_ERR

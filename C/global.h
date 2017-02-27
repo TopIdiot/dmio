@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  dmio_type.h
+ *       Filename:  global.h
  *
  *    Description:  Define types used in dmio
  *
