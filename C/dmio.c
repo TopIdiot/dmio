@@ -140,7 +140,7 @@ void master_work(){
     if(proc_type != proc_master) return ;
 
     int i;
-
+    int *tags = (int *)malloc(sizeof(int)*server_num);
     while(true)
     {
         msg ms;
@@ -177,6 +177,7 @@ void master_work(){
         tags[i] ++ ;
 
     }
+    free(tags);
 }
 
 void server_work(){
