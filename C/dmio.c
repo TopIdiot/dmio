@@ -83,7 +83,10 @@ void dmio_save(char* filename, char* varname, double *A, int nx, int ny, int *nc
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
    
-    ierr = MPI_Win_create(A,sizeof(double)*nx*ny,sizeof(double),MPI_INFO_NULL,MPI_COMM_WORLD,nwin);
+    double *tmp = (double*) malloc(sizeof(nx*ny*sizeof(double)));
+    memcpy(tmp,A,sizeof(double)*nx*ny);
+
+    ierr = MPI_Win_create(tmp,sizeof(double)*nx*ny,sizeof(double),MPI_INFO_NULL,MPI_COMM_WORLD,nwin);
 
     if(proc_type == proc_server){
         int cmode,dimid[2];
@@ -122,6 +125,17 @@ void dmio_save(char* filename, char* varname, double *A, int nx, int ny, int *nc
     }
 }
 
+void dmio_load(char *filename, char *varname){
+
+    if(proc_type != proc_client) return ;
+    int ncfile, ndims, nvars, ngatts, unlimited;
+    int var_ndims, var_natts;
+    MPI_Offset *dim_sizes, var_size;
+    MPI_Offset *start,*count;
+    
+
+
+}
 void client_work(){
     
     if(proc_type != proc_client) return;

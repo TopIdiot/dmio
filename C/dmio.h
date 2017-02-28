@@ -20,6 +20,7 @@ void server_work();
 void master_work();
 void client_work();
 void close_file(int ncid);
-void dmio_save(char *filename,char *varname,double *A, int nx, int ny, int *ncid, int *varid, MPI_Win *win);
+void dmio_save(char *filename,char *varname, double *A, int nx, int ny, int *ncid, int *varid, MPI_Win *win);
+void dmio_laod(chr *filename, char *varname, double *A, int nx, int ny);
 void dmio_finalize();
 #endif
